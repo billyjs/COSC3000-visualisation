@@ -3,7 +3,7 @@ const n = 20;
 const count = n*m;
 const single = 100 / count;
 
-$.getJSON(`../scripts/_data_${n}.json`, function (data) {
+$.getJSON(`../scripts/data${n}.json`, function (data) {
 
     // data formatting code
 
