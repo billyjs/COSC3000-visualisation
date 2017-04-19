@@ -80,7 +80,7 @@ function load(page, callback) {
 }
 
 function write(data) {
-    fs.writeFile(`_data_${count}.json`, JSON.stringify(data), (err) => {
+    fs.writeFile(`data${count}.json`, JSON.stringify(data), (err) => {
         if (err) console.error(err);
     });
 }

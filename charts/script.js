@@ -120,6 +120,13 @@ $.getJSON(`../scripts/data${n}.json`, function (data) {
                     bottom: 0
                 }
             }
+        },
+        tooltip: {
+            format: {
+                value: function(value, ratio, id) {
+                    return value.toFixed(2) + " %";
+                }
+            }
         }
     });
 
