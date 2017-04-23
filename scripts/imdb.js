@@ -22,13 +22,13 @@ const x = Xray({
 
 const base = 'http://www.imdb.com/search/title';
 const count = 20;
-const sort = 'boxoffice_gross_us';
+// const sort = 'boxoffice_gross_us';
+const sort = "moviemeter,asc";
 const title_type = 'feature';
 const limit = 20;
 
 let pages = [];
 
-// 1967 - 2017
 for (let year = 1967; year < 2017; year++) {
     for (let month = 1; month < 13; month++) {
 
@@ -73,14 +73,13 @@ function load(page, callback) {
             return value;
         });
 
-        // data.push(...result);
         bar.tick();
         callback(null, result);
     });
 }
 
 function write(data) {
-    fs.writeFile(`data${count}.json`, JSON.stringify(data), (err) => {
+    fs.writeFile(`../data/pop-data${count}.json`, JSON.stringify(data), (err) => {
         if (err) console.error(err);
     });
 }
