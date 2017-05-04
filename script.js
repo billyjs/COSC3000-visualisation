@@ -11,7 +11,7 @@ $.getJSON(`./data/pop-data${n}.json`, function (json) {
     // process genre data
     let genre = genreData(json);
     let genreKeys = ["Drama", "Comedy", "Action", "Romance", "Crime", "Horror", "Thriller", "Adventure", "Mystery", "Sci-Fi", "Fantasy", "Family", "Biography", "Western", "Animation", "Other"];
-    let genreTitle = "Percentage of each Genre of Popular Movies of each Year";
+    let genreTitle = "Genre Distribution of Popular Movies 1967-2016";
 
     // show genre chart
     chart = areaChart(genre, genreKeys, color20, genreTitle);
@@ -20,7 +20,7 @@ $.getJSON(`./data/pop-data${n}.json`, function (json) {
     // process rating data
     let rating = ratingData(json);
     let ratingKeys = ["G", "PG", "M", "MA15+", "R18+", "X18+", "Not Rated", "RC"];
-    let ratingTitle = "Percentage of each Movie Rating of Popular Movies of each Year";
+    let ratingTitle = "Classification Distribution of Popular Movies 1967-2016";
 
     // process gross data
     let gross = grossData(json);
@@ -66,7 +66,7 @@ function runtimeChart(data) {
     return c3.generate({
         bindto: "#chart",
         title: {
-            text: "Average Runtime of Popular Movies each Month"
+            text: "Average Runtime of Popular Movies each Month 1967-2016"
         },
         padding: {
             right: 20,
@@ -219,7 +219,7 @@ function grossFFTChart(data) {
     return c3.generate({
         bindto: "#chart",
         title: {
-            text: "!Gross FFT?"
+            text: "Gross FFT"
         },
         padding: {
             right: 20,
@@ -274,7 +274,7 @@ function grossChart(data) {
     return c3.generate({
         bindto: "#chart",
         title: {
-            text: "Monthly Grossing of Popular Movies"
+            text: "Monthly Grossing of Popular Movies 1986-2016"
         },
         padding: {
             right: 20,
@@ -507,10 +507,9 @@ function ratingData(json) {
             A and SOA added to Not Rated
             NRC added to PG
          */
-        r.M += r["PG-13"];
-        r["R18+"] += r.R + r["NC-17"] || 0;
-        r["Not Rated"] += r.A + r.SOA;
-        r.PG += r.NRC;
+        r.M += r["PG-13"] + r.SOA;
+        r["R18+"] += r.R + r["NC-17"];
+        r.PG += r.NRC + r.A;
 
         delete r.SOA;
         delete r["NC-17"];
